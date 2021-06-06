@@ -49,6 +49,9 @@ const useStyles = makeStyles(() => ({
   // Máscara para RG: '00.000.000-0'
   const rgMask = '00.000.000-0'
 
+  // Máscara para telefone: '(00)0000-0000'
+  const telefoneMask = '(00)0000-0000'
+
   export default function ClientesForm() {
     const classes = useStyles()
 
@@ -214,7 +217,7 @@ const useStyles = makeStyles(() => ({
       }
 
        // Validação do campo telefone
-    if(data.telefone.trim() === '') {
+    if(data.telefone.trim() === ''|| data.cpf.includes('_')) {
         errorTemp.telefone = 'O telefone deve ser preenchido'
         isValid = false
       }
@@ -455,6 +458,23 @@ const useStyles = makeStyles(() => ({
           <MenuItem value="GO">GO</MenuItem>
           <MenuItem value="DF">DF</MenuItem>     
         </TextField>
+
+        <InputMask 
+        formatChars={formatNumber}
+          mask={telefoneMask} 
+          id="telefone" 
+          value={cliente.telefone}
+          onChange={event => handleInputChange(event, 'telefone')}   
+        >
+             {() => <TextField 
+            label="Telefone" 
+            variant="filled" 
+            fullWidth 
+            required
+            error={error.telefone !== ''}
+            helperText={error.telefone} 
+          />}
+        </InputMask>
 
         <TextField 
           id="email" 
