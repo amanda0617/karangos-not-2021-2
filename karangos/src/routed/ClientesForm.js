@@ -39,7 +39,7 @@ const useStyles = makeStyles(() => ({
     }
   }))
 
-  const formatChars = {
+  const formatNumber = {
     '0': '[0-9]',
   }
 
@@ -133,15 +133,7 @@ const useStyles = makeStyles(() => ({
         // senão, usaremos o valor do segundo parâmetro
         if(event.target.id) property = event.target.id
 
-        if(property === 'cpf') {
           clienteTemp[property] = event.target.value
-        }
-        else if(property === 'rg') {
-          clienteTemp[property] = event.target.value.toUpperCase()
-        }
-        else {
-          clienteTemp[property] = event.target.value
-        }
 
         setCliente(clienteTemp)
         setIsModified(true)   // O formulário foi modificado
@@ -174,13 +166,13 @@ const useStyles = makeStyles(() => ({
       }
 
       // Validação do campo cpf
-    if(data.cpf.trim() === '' || data.cpf.includes('-')) {
+    if(data.cpf.trim() === '' || data.cpf.includes('_')) {
         errorTemp.cpf = 'O CPF deve ser preenchido'
         isValid = false
       }
 
        // Validação do campo rg
-    if(data.rg.trim() === ''|| data.cpf.includes('-')) {
+    if(data.rg.trim() === ''|| data.cpf.includes('_')) {
         errorTemp.rg = 'O RG deve ser preenchido'
         isValid = false
       }
@@ -330,7 +322,7 @@ const useStyles = makeStyles(() => ({
         />
 
       <InputMask 
-        formatChars={formatChars}
+        formatChars={formatNumber}
           mask={cpfMask} 
           id="cpf" 
           value={cliente.cpf}
@@ -347,7 +339,7 @@ const useStyles = makeStyles(() => ({
         </InputMask>
 
         <InputMask 
-          formatChars={formatChars}
+          formatChars={formatNumber}
           mask={rgMask} 
           id="rg" 
           value={cliente.rg}
