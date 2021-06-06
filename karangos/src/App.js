@@ -31,6 +31,8 @@ import { Box } from '@material-ui/core'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import KarangosList from './routed/KarangosList2'
 import KarangosForm from './routed/KarangosForm'
+import ClientesList from './routed/ClientesList'
+import ClientesForm from './routed/ClientesForm'
 
 const theme = createMuiTheme({
   palette: {
@@ -77,8 +79,21 @@ function Main() {
             </Route>
           </Switch>
         </Box>
-        <FooterBar />
-      </BrowserRouter>
+        <Box id="routed" className={classes.routed}>
+          <Switch>
+          <Route path="/lista">
+            <ClientesList />
+          </Route>
+          <Route path="/novo">
+            <ClientesForm />
+          </Route>
+          <Route path="/edite/:id">
+            <ClientesForm />
+          </Route>
+        </Switch>
+      </Box>
+      <FooterBar />
+    </BrowserRouter>
     </Box>
   )
 }
