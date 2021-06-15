@@ -33,6 +33,7 @@ import KarangosList from './routed/KarangosList2'
 import KarangosForm from './routed/KarangosForm'
 import ClientesList from './routed/ClientesList'
 import ClientesForm from './routed/ClientesForm'
+import HomePage from './routed/HomePage';
 
 const theme = createMuiTheme({
   palette: {
@@ -65,6 +66,16 @@ function Main() {
     <Box className={classes.box}>
       <BrowserRouter>
         <TopBar />
+        <Box id="routed" className={classes.routed}>
+          <Switch>
+            <Route path="/">
+              <HomePage />
+            </Route>
+            <Route path="/edit/:id">
+              <KarangosForm />
+            </Route>
+          </Switch>
+        </Box>
         <Box id="routed" className={classes.routed}>
           <Switch>
             <Route path="/list">
